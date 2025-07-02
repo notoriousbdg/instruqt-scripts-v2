@@ -184,6 +184,28 @@ def create_namespace():
             print(f"{RED}Error creating namespace: {str(e)}{NC}")
             sys.exit(1)
 
+def deploy_log_generator():
+    """Deploy the log-generator from Kubernetes YAML file."""
+    print(f"\n{BLUE}Deploying log-generator...{NC}")
+    
+    # Get log-generator deployment file
+    log_generator_file = os.path.join(config['base_dir'], 'kubernetes', 'log-generator.yaml')
+    
+    if not os.path.exists(log_generator_file):
+        print(f"{RED}Error: Log-generator file not found at {log_generator_file}{NC}")
+        sys.exit(1)
+    
+    # Apply the log-generator deployment
+    try:
+        subprocess.run([
+            'kubectl', 'apply', '-f', log_generator_file,
+            '--namespace', config['namespace']
+        ], check=True)
+        print(f"{GREEN}Log-generator deployed successfully.{NC}")
+    except subprocess.CalledProcessError as e:
+        print(f"{RED}Error deploying log-generator: {str(e)}{NC}")
+        sys.exit(1)
+
 def create_elasticsearch_secret():
     """Create or update Elasticsearch credentials secret."""
     print(f"\n{BLUE}Checking for existing Elasticsearch credentials secret...{NC}")
@@ -694,6 +716,9 @@ def main():
     
     # Create namespace if needed
     create_namespace()
+    
+    # Deploy log-generator
+    deploy_log_generator()
     
     # Create Elasticsearch credentials secret
     create_elasticsearch_secret()
