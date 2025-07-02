@@ -9,6 +9,8 @@ developers:
 - david.hope@elastic.co
 instructors:
 - william.vink@elastic.co
+- gerald.mcdonald@elastic.co
+- lutf.urrehman@elastic.co
 idle_timeout: 3600
 timelimit: 10800
 lab_config:
@@ -20,5 +22,5 @@ lab_config:
   hideStopButton: false
   default_layout: AssignmentRight
   default_layout_sidebar_size: 33
-checksum: "12652997780324598476"
+checksum: "2165411152698821253"
 enhanced_loading: false

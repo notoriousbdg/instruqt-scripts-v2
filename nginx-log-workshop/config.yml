@@ -16,3 +16,7 @@ virtualmachines:
   cpus: 4
   allow_external_ingress:
   - https
+secrets:
+- name: GCSKEY_EDEN_WORKSHOP
+- name: LLM_PROXY_PROD
+- name: LLM_PROXY_STAGING

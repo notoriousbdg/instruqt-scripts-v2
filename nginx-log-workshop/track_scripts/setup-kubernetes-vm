@@ -24,14 +24,14 @@ apt-get install -y git python3 python3-pip
 python3 --version
 pip3 --version
 
-git clone https://github.com/davidgeorgehope/instruqt-scripts
+git clone https://github.com/davidgeorgehope/instruqt-scripts-v2
 
 # Add the variables with proper escaping
 echo "LLM_PROXY_STAGING='$LLM_PROXY_STAGING'" >> /root/.env
 echo "LLM_PROXY_PROD='$LLM_PROXY_PROD'" >> /root/.env
 echo $GCSKEY_EDEN_WORKSHOP >> /tmp/gcs.client.eden-workshop.credentials_file
 
-cd instruqt-scripts
+cd instruqt-scripts-v2
 chmod +x setup-elastic-in-instruqt.sh
 source ./setup-elastic-in-instruqt.sh nginx_demo
 sleep 60
