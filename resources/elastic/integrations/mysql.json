@@ -1,0 +1,64 @@
+{
+  "agent_policy_name": "MySQL Monitoring Policy",
+  "package_policy": {
+    "package": {
+      "name": "mysql",
+      "version": "1.25.0"
+    },
+    "name": "mysql-1",
+    "description": "MySQL database monitoring",
+    "namespace": "default",
+    "inputs": {
+      "mysql-logfile": {
+        "enabled": true,
+        "streams": {
+          "mysql.error": {
+            "enabled": true,
+            "vars": {
+              "paths": [
+                "/var/log/mysql/error.log*",
+                "/var/log/mysql/mysql.log*"
+              ],
+              "tags": [
+                "mysql-error"
+              ],
+              "preserve_original_event": false
+            }
+          },
+          "mysql.slowlog": {
+            "enabled": true,
+            "vars": {
+              "paths": [
+                "/var/log/mysql/*-slow.log*",
+                "/var/lib/mysql/*-slow.log*"
+              ],
+              "tags": [
+                "mysql-slowlog"
+              ],
+              "preserve_original_event": false
+            }
+          }
+        }
+      },
+      "mysql-mysql/metrics": {
+        "enabled": false,
+        "vars": {
+          "hosts": [
+            "tcp(localhost:9001)/"
+          ],
+          "username": "${MYSQL_USERNAME}",
+          "password": "${MYSQL_PASSWORD}"
+        },
+        "streams": {
+          "mysql.status": {
+            "enabled": false,
+            "vars": {
+              "period": "10s",
+              "raw": false
+            }
+          }
+        }
+      }
+    }
+  }
+} 

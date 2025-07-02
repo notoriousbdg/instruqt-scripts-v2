@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-frontend-log-client
+  labels:
+    app: nginx-frontend-log-client
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-frontend-log-client
+  template:
+    metadata:
+      labels:
+        app: nginx-frontend-log-client
+    spec:
+      containers:
+      - name: nginx-frontend-log-client
+        image: djhope99/log-generator-v2:latest
+        imagePullPolicy: Always
+        command:
+        - java
+        - -cp
+        - /app/log-generator-0.0.1-SNAPSHOT.jar
+        - org.davidgeorgehope.client.NginxFrontendLogClient
+        - "$(NGINX_FRONTEND_ERROR_PORT)"
+        - "$(NGINX_FRONTEND_STDOUT_PORT)"
+        - "$(LOG_GENERATOR_SERVICE)"
+        env:
+        - name: NGINX_FRONTEND_ERROR_PORT
+          value: "9005"
+        - name: NGINX_FRONTEND_STDOUT_PORT
+          value: "9006"
+        - name: LOG_GENERATOR_SERVICE
+          value: "log-generator-service"
+        resources:
+          limits:
+            cpu: "0.5"
+            memory: "512Mi"
+          requests:
+            cpu: "0.1"
+            memory: "256Mi"
+      restartPolicy: Always 

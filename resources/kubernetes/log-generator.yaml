@@ -1,0 +1,112 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: log-generator
+  labels:
+    app: log-generator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: log-generator
+  template:
+    metadata:
+      labels:
+        app: log-generator
+    spec:
+      containers:
+      - name: log-generator
+        image: djhope99/log-generator-v2:latest
+        imagePullPolicy: Always
+        command:
+        - java
+        - -jar
+        - /app/log-generator-0.0.1-SNAPSHOT.jar
+        - --mysql-error-port=9001
+        - --mysql-stdout-port=9002
+        - --nginx-backend-error-port=9003
+        - --nginx-backend-stdout-port=9004
+        - --nginx-frontend-error-port=9005
+        - --nginx-frontend-stdout-port=9006
+        - --nginx-ingress-port=9007
+        - --nginx-ingress-error-port=9008
+        - --admin-port=9000
+        ports:
+        - containerPort: 9001
+          name: mysql-error
+        - containerPort: 9002
+          name: mysql-stdout
+        - containerPort: 9003
+          name: nginx-be-error
+        - containerPort: 9004
+          name: nginx-be-stdout
+        - containerPort: 9005
+          name: nginx-fe-error
+        - containerPort: 9006
+          name: nginx-fe-stdout
+        - containerPort: 9007
+          name: nginx-ingress
+        - containerPort: 9008
+          name: nginx-ing-error
+        - containerPort: 8080
+          name: fe-metrics
+        - containerPort: 8081
+          name: be-metrics
+        - containerPort: 9000
+          name: admin-server
+        resources:
+          limits:
+            cpu: "1.0"
+            memory: "1Gi"
+          requests:
+            cpu: "0.5"
+            memory: "512Mi"
+        volumeMounts:
+        - name: log-volume
+          mountPath: /var/log
+      volumes:
+      - name: log-volume
+        emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: log-generator-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: log-generator
+  ports:
+  - name: mysql-error
+    port: 9001
+    targetPort: 9001
+  - name: mysql-stdout
+    port: 9002
+    targetPort: 9002
+  - name: nginx-be-error
+    port: 9003
+    targetPort: 9003
+  - name: nginx-be-stdout
+    port: 9004
+    targetPort: 9004
+  - name: nginx-fe-error
+    port: 9005
+    targetPort: 9005
+  - name: nginx-fe-stdout
+    port: 9006
+    targetPort: 9006
+  - name: nginx-ingress
+    port: 9007
+    targetPort: 9007
+  - name: nginx-ing-error
+    port: 9008
+    targetPort: 9008
+  - name: fe-metrics
+    port: 8080
+    targetPort: 8080
+  - name: be-metrics
+    port: 8081
+    targetPort: 8081
+  - name: admin-server
+    port: 9000
+    targetPort: 9000

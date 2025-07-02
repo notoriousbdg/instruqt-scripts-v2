@@ -1,0 +1,18 @@
+version: "3"
+virtualmachines:
+- name: kubernetes-vm
+  image: elastic-pme-team/k3s-latest-0b3ea7e6-5284-4fa3-8d1b-50c6f23bffa5
+  shell: /bin/bash
+  memory: 16384
+  cpus: 16
+  allow_external_ingress:
+  - https
+  - http
+  - high-ports
+- name: host-1
+  image: debian-cloud/debian-11
+  shell: /bin/bash
+  memory: 4096
+  cpus: 4
+  allow_external_ingress:
+  - https

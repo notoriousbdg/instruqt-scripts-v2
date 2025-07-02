@@ -1,0 +1,29 @@
+{
+  "params": {
+    "timeSize": 5,
+    "timeUnit": "d",
+    "logView": {
+      "type": "log-view-reference",
+      "logViewId": "default"
+    },
+    "count": {
+      "value": 1,
+      "comparator": "more than"
+    },
+    "criteria": [
+        {
+            "field": "log.level",
+            "comparator": "equals",
+            "value": "ERROR"
+          }
+    ]
+  },
+  "consumer": "alerts",
+  "schedule": {
+    "interval": "1m"
+  },
+  "tags": [],
+  "name": "Log Spike",
+  "rule_type_id": "logs.alert.document.count",
+  "actions": []
+}

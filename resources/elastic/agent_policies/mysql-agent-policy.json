@@ -1,0 +1,11 @@
+{
+  "name": "MySQL Monitoring Policy",
+  "description": "Agent policy for monitoring MySQL deployments",
+  "namespace": "default",
+  "monitoring_enabled": [
+    "logs",
+    "metrics"
+  ],
+  "inactivity_timeout": 1209600,
+  "is_protected": false
+} 

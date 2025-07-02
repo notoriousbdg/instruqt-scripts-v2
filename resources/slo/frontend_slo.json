@@ -1,0 +1,33 @@
+{
+    "name": "frontend slo",
+    "description": "",
+    "indicator": {
+        "type": "sli.kql.custom",
+        "params": {
+            "index": "logs-*",
+            "filter": "log.file.path : *frontend*",
+            "good": "NOT http.response.status_code : 500",
+            "total": "http.response.status_code : *",
+            "timestampField": "@timestamp",
+            "dataViewId": "logs-*"
+        }
+    },
+    "budgetingMethod": "timeslices",
+    "timeWindow": {
+      "duration": "1M",
+      "type": "calendarAligned"
+    },
+    "objective": {
+      "target": 0.999,
+      "timesliceTarget": 0.95,
+      "timesliceWindow": "1m"
+    },
+    "tags": [],
+    "groupBy": [
+      "*"
+    ],
+    "settings": {
+      "preventInitialBackfill": false
+    }
+  }
+  

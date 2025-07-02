@@ -1,0 +1,66 @@
+{
+  "agent_policy_name": "Nginx Backend Monitoring Policy",
+  "package_policy": {
+    "package": {
+      "name": "nginx",
+      "version": "1.23.0"
+    },
+    "name": "nginx-backend",
+    "description": "Nginx backend monitoring",
+    "namespace": "default",
+    "inputs": {
+      "nginx-logfile": {
+        "enabled": true,
+        "streams": {
+          "nginx.access": {
+            "enabled": true,
+            "vars": {
+              "paths": [
+                "/var/log/nginx_backend/access.log*"
+              ],
+              "tags": [
+                "nginx-backend-access"
+              ],
+              "preserve_original_event": false,
+              "ignore_older": "72h"
+            }
+          },
+          "nginx.error": {
+            "enabled": true,
+            "vars": {
+              "paths": [
+                "/var/log/nginx_backend/error.log*"
+              ],
+              "tags": [
+                "nginx-backend-error"
+              ],
+              "preserve_original_event": false,
+              "ignore_older": "72h"
+            }
+          }
+        }
+      },
+      "nginx-nginx/metrics": {
+        "enabled": false,
+        "vars": {
+          "hosts": [
+            "http://localhost:9003",
+            "http://localhost:9004"
+          ]
+        },
+        "streams": {
+          "nginx.stubstatus": {
+            "enabled": false,
+            "vars": {
+              "period": "10s",
+              "server_status_path": "/nginx_status",
+              "tags": [
+                "nginx-backend-status"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+} 

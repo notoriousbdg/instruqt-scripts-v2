@@ -1,0 +1,66 @@
+{
+  "agent_policy_name": "Nginx Frontend Monitoring Policy",
+  "package_policy": {
+    "package": {
+      "name": "nginx",
+      "version": "1.23.0"
+    },
+    "name": "nginx-frontend",
+    "description": "Nginx frontend monitoring",
+    "namespace": "default",
+    "inputs": {
+      "nginx-logfile": {
+        "enabled": true,
+        "streams": {
+          "nginx.access": {
+            "enabled": true,
+            "vars": {
+              "paths": [
+                "/var/log/nginx_frontend/access.log*"
+              ],
+              "tags": [
+                "nginx-frontend-access"
+              ],
+              "preserve_original_event": false,
+              "ignore_older": "72h"
+            }
+          },
+          "nginx.error": {
+            "enabled": true,
+            "vars": {
+              "paths": [
+                "/var/log/nginx_frontend/error.log*"
+              ],
+              "tags": [
+                "nginx-frontend-error"
+              ],
+              "preserve_original_event": false,
+              "ignore_older": "72h"
+            }
+          }
+        }
+      },
+      "nginx-nginx/metrics": {
+        "enabled": false,
+        "vars": {
+          "hosts": [
+            "http://localhost:9005",
+            "http://localhost:9006"
+          ]
+        },
+        "streams": {
+          "nginx.stubstatus": {
+            "enabled": false,
+            "vars": {
+              "period": "10s",
+              "server_status_path": "/nginx_status",
+              "tags": [
+                "nginx-frontend-status"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+} 

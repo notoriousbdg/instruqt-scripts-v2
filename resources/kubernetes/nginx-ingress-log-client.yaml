@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-ingress-log-client
+  labels:
+    app: nginx-ingress-log-client
+    app.kubernetes.io/name: ingress-nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-ingress-log-client
+  template:
+    metadata:
+      labels:
+        app: nginx-ingress-log-client
+        app.kubernetes.io/name: ingress-nginx
+    spec:
+      containers:
+      - name: nginx-ingress-log-client
+        image: djhope99/log-generator-v2:latest
+        imagePullPolicy: Always
+        command:
+        - java
+        - -cp
+        - /app/log-generator-0.0.1-SNAPSHOT.jar
+        - org.davidgeorgehope.client.NginxIngressLogClient
+        - "$(NGINX_INGRESS_PORT)"
+        - "$(NGINX_INGRESS_ERROR_PORT)"
+        - "$(LOG_GENERATOR_SERVICE)"
+        env:
+        - name: NGINX_INGRESS_PORT
+          value: "9007"
+        - name: NGINX_INGRESS_ERROR_PORT
+          value: "9008"
+        - name: LOG_GENERATOR_SERVICE
+          value: "log-generator-service"
+        resources:
+          limits:
+            cpu: "0.3"
+            memory: "256Mi"
+          requests:
+            cpu: "0.1"
+            memory: "128Mi" 
