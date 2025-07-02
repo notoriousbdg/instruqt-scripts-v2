@@ -24,7 +24,8 @@ apt-get install -y git python3 python3-pip
 python3 --version
 pip3 --version
 
-git clone https://github.com/davidgeorgehope/instruqt-scripts
+git clone https://github.com/davidgeorgehope/instruqt-scripts-v2
+
 
 # Add the variables with proper escaping
 echo "LLM_PROXY_STAGING='$LLM_PROXY_STAGING'" >> /root/.env

@@ -7,8 +7,8 @@ echo "Setting up demo type: $DEMO_TYPE" >> log.txt
 
 { apt-get update; apt-get install nginx -y; } &
 
-kubectl create -f https://download.elastic.co/downloads/eck/2.13.0/crds.yaml
-kubectl apply -f https://download.elastic.co/downloads/eck/2.13.0/operator.yaml
+kubectl create -f https://download.elastic.co/downloads/eck/3.0.0/crds.yaml
+kubectl apply -f https://download.elastic.co/downloads/eck/3.0.0/operator.yaml
 
 
 #echo $GCSKEY_EDEN_WORKSHOP >> /tmp/gcs.client.eden-workshop.credentials_file
@@ -23,7 +23,7 @@ metadata:
   name: kibana
   namespace: default
 spec:
-  version: 8.17.0
+  version: 9.0.3
   count: 1
   elasticsearchRef:
     name: elasticsearch
@@ -97,7 +97,7 @@ metadata:
   name: elasticsearch
   namespace: default
 spec:
-  version: 8.17.0
+  version: 9.0.3
   secureSettings:
   - secretName: gcs-credentials-eden-workshop
   http:
@@ -127,7 +127,7 @@ metadata:
   name: fleet-server
   namespace: default
 spec:
-  version: 8.17.0
+  version: 9.0.3
   kibanaRef:
     name: kibana
   elasticsearchRefs:
@@ -159,7 +159,7 @@ metadata:
   name: elastic-agent
   namespace: default
 spec:
-  version: 8.17.0
+  version: 9.0.3
   kibanaRef:
     name: kibana
   fleetServerRef: 
@@ -634,7 +634,8 @@ BASE64=$(echo -n "elastic:${ELASTICSEARCH_PASSWORD}" | base64)
 
 export ELASTICSEARCH_USER=elastic
 export KIBANA_URL=http://localhost:30002
-export FLEET_URL=https://localhost:30822
+export FLEET_URL=https://fleet-server-agent-http.default.svc:8220
+
 export PASSWORD=$(kubectl get secret elasticsearch-es-elastic-user -n default -o go-template='{{.data.elastic | base64decode}}')
 
 
