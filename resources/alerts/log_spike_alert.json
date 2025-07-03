@@ -1,7 +1,7 @@
 {
   "params": {
     "timeSize": 10,
-    "timeUnit": "d",
+    "timeUnit": "m",
     "logView": {
       "type": "log-view-reference",
       "logViewId": "default"
