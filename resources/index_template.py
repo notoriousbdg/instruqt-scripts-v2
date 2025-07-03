@@ -10,7 +10,7 @@ def create_custom_default_mode_template():
     """Create the custom_default_mode index template."""
     
     template_config = {
-        "index_patterns": ["mysql*", "nginx*", "ingress*"],
+        "index_patterns": ["logs-mysql*", "logs-nginx*", "logs-ingress*"],
         "priority": 500,
         "template": {
             "settings": {
