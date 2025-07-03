@@ -1,6 +1,6 @@
 {
   "params": {
-    "timeSize": 5,
+    "timeSize": 10,
     "timeUnit": "d",
     "logView": {
       "type": "log-view-reference",
@@ -20,7 +20,7 @@
   },
   "consumer": "alerts",
   "schedule": {
-    "interval": "1m"
+    "interval": "2m"
   },
   "tags": [],
   "name": "Log Spike",
