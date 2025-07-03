@@ -11,7 +11,7 @@ def create_custom_default_mode_template():
     
     template_config = {
         "index_patterns": ["*"],
-        "priority": 500,
+        "priority": 495,
         "template": {
             "settings": {
                 "index.mode": "lookup"
