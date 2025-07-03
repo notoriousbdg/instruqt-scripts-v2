@@ -10,8 +10,8 @@ def create_custom_default_mode_template():
     """Create the custom_default_mode index template."""
     
     template_config = {
-        "index_patterns": ["*"],
-        "priority": 495,
+        "index_patterns": ["mysql*", "nginx*", "ingress*"],
+        "priority": 500,
         "template": {
             "settings": {
                 "index.mode": "lookup"
