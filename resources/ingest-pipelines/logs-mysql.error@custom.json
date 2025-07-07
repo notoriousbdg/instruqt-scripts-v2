@@ -1,0 +1,12 @@
+{
+  "processors": [
+    {
+      "grok": {
+        "field": "message",
+        "patterns": [
+          "RequestID: %{UUID:request_id}"
+        ]
+      }
+    }
+  ]
+}

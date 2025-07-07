@@ -1,0 +1,12 @@
+{
+  "processors": [
+    {
+      "grok": {
+        "field": "message",
+        "patterns": [
+          "%{URIPATHPARAM:request.url.path}\\?req_id=%{UUID:request_id}"
+        ]
+      }
+    }
+  ]
+}
