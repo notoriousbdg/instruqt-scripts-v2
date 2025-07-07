@@ -49,7 +49,7 @@ spec:
         - name: log-volume
           mountPath: /var/log/mysql
       - name: elastic-agent
-        image: docker.elastic.co/elastic-agent/elastic-agent:8.16.2
+        image: docker.elastic.co/elastic-agent/elastic-agent:9.0.3
         env:
         - name: FLEET_ENROLL
           value: "1"
@@ -126,7 +126,7 @@ spec:
         - name: log-volume
           mountPath: /var/log/nginx_backend
       - name: elastic-agent
-        image: docker.elastic.co/elastic-agent/elastic-agent:8.16.2
+        image: docker.elastic.co/elastic-agent/elastic-agent:9.0.3
         env:
         - name: FLEET_ENROLL
           value: "1"
@@ -203,7 +203,7 @@ spec:
         - name: log-volume
           mountPath: /var/log/nginx_frontend
       - name: elastic-agent
-        image: docker.elastic.co/elastic-agent/elastic-agent:8.16.2
+        image: docker.elastic.co/elastic-agent/elastic-agent:9.0.3
         env:
         - name: FLEET_ENROLL
           value: "1"

@@ -22,7 +22,7 @@ def init():
     
     print("Installing Kubernetes Elastic Agents...")
     install_kubernetes_agents()
-    #ingest_pipelines.load()
+    ingest_pipelines.load()
     time.sleep(60)
     slo.load()
     ml.load_integration_jobs()

@@ -166,7 +166,7 @@ spec:
     name: fleet-server
   mode: fleet
   policyID: policy-elastic-agent-on-cloud
-  image: docker.elastic.co/beats/elastic-agent-complete:8.15.2
+  image: docker.elastic.co/beats/elastic-agent-complete:9.0.3
   deployment:
     replicas: 1
     podTemplate:
