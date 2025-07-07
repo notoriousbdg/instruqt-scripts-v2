@@ -2,7 +2,7 @@
   "processors": [
     {
       "grok": {
-        "field": "message",
+        "field": "mysql.slowlog.query",
         "patterns": [
           "RequestID: %{UUID:request_id}"
         ]
