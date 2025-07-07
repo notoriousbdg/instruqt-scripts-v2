@@ -18,7 +18,7 @@ app = Flask(__name__)
 def init():
     # Create the index template
     print("Creating index template...")
-    index_template.load()
+    #index_template.load()
     
     print("Installing Kubernetes Elastic Agents...")
     install_kubernetes_agents()
