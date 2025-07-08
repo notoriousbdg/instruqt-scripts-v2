@@ -641,6 +641,33 @@ export PASSWORD=$(kubectl get secret elasticsearch-es-elastic-user -n default -o
 
 curl -s -X POST --header "Authorization: Basic $BASE64" "$ELASTICSEARCH_URL/_license/start_trial?acknowledge=true"
 
+curl -X PUT "$KIBANA_URL/api/spaces/space/default" \
+  -u "$ELASTICSEARCH_USERNAME:$ELASTICSEARCH_PASSWORD" \
+  -H "Content-Type: application/json" \
+  -H "kbn-xsrf: true" \
+  -d '{
+    "id": "default",
+    "name": "Default",
+    "description": "This is your default space!",
+    "color": "#00BFB3",
+    "initials": "D",
+    "imageUrl": "",
+    "disabledFeatures": [
+      "siem",
+      "siemV2",
+      "securitySolutionCases",
+      "securitySolutionCasesV2",
+      "securitySolutionCasesV3",
+      "securitySolutionAssistant",
+      "securitySolutionAttackDiscovery",
+      "securitySolutionTimeline",
+      "securitySolutionNotes",
+      "securitySolutionSiemMigrations"
+    ],
+    "_reserved": true,
+    "solution": "oblt"
+  }'
+
 cd resources
 pip3 install -r requirements.txt
 python3 ${DEMO_TYPE}.py
