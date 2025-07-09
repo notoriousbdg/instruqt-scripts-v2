@@ -667,13 +667,15 @@ curl -X PUT "$KIBANA_URL/api/spaces/space/default" \
     "_reserved": true,
     "solution": "oblt"
   }'
-curl -X PUT "$KIBANA_URL/kbn/internal/kibana/settings" \
+
+curl -X POST "$KIBANA_URL/internal/kibana/settings" \
   -u "$ELASTICSEARCH_USERNAME:$ELASTICSEARCH_PASSWORD" \
   -H 'Content-Type: application/json' \
   -H 'accept: application/json' \
-  -H 'kbn-version: 9.1.0' \
+  -H 'kbn-version: 9.0.3' \
   -H 'x-elastic-internal-origin: Kibana' \
-  --data-raw '{"changes":{"aiAssistant:preferredAIAssistantType":"everywhere"}}'
+  -d '{"changes":{"aiAssistant:preferredAIAssistantType":"observability"}}'
+
 
 cd resources
 pip3 install -r requirements.txt
