@@ -10,6 +10,13 @@
       }
     },
     {
+      "convert": {
+        "field": "amount",
+        "type": "float",
+        "ignore_missing": true
+      }
+    },
+    {
       "script": {
         "source": "          ctx.debug = [];\n          \n          // Use the amount field extracted by grok, default to 0.0 if not present\n          double amount = ctx.amount != null ? ctx.amount : 0.0;\n          ctx.debug.add(\"Amount: \" + amount);\n          \n          boolean is500Error = ctx.http?.response?.status_code == 500;\n          ctx.debug.add(\"Is 500 error: \" + is500Error);\n          \n          double revenue = is500Error ? -amount : amount;\n          ctx.debug.add(\"Calculated revenue: \" + revenue);\n          \n          // Set the revenue field\n          ctx.revenue = revenue;\n          ctx.debug.add(\"Set revenue field to: \" + ctx.revenue);"
       }
