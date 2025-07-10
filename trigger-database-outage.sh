@@ -7,9 +7,6 @@ set -e
 LOG_GENERATOR_SERVICE_NAME="log-generator-service"
 ADMIN_PORT="9000"
 ENDPOINT_PATH="/admin/database-outage/trigger"
-NAMESPACE="default"
-TIMEOUT=300  # 5 minutes timeout
-
 
 EXTERNAL_IP=$(kubectl get service log-generator-service -o jsonpath='{.status.loadBalancer.ingress[0].ip}' 2>/dev/null)
 
