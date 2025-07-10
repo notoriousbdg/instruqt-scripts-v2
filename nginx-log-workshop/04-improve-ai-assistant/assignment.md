@@ -1,10 +1,10 @@
 ---
-slug: nginx-demo
-id: xncysodll5xj
+slug: improve-ai-assistant
+id: yltccahruv8x
 type: challenge
-title: Nginx Logs
+title: Improve AI responses
 tabs:
-- id: vdgzlgzyxtzc
+- id: lvv7vkeyqanx
   title: Kibana
   type: service
   hostname: kubernetes-vm
@@ -18,7 +18,7 @@ tabs:
   - key: Content-Security-Policy
     value: 'script-src ''self''; worker-src blob: ''self''; style-src ''unsafe-inline''
       ''self'''
-- id: ieelvfgxnayo
+- id: e4q2ykosnwg3
   title: SSH
   type: terminal
   hostname: kubernetes-vm
