@@ -676,6 +676,7 @@ curl -X POST "$KIBANA_URL/internal/kibana/settings" \
   -H 'x-elastic-internal-origin: Kibana' \
   -d '{"changes":{"aiAssistant:preferredAIAssistantType":"observability"}}'
 
+chmod +x trigger-database-outage.sh
 
 cd resources
 pip3 install -r requirements.txt
