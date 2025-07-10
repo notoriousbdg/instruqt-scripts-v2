@@ -1,0 +1,32 @@
+{
+  "tags": [],
+  "params": {
+    "timeSize": 10,
+    "timeUnit": "m",
+    "logView": {
+      "type": "log-view-reference",
+      "logViewId": "default"
+    },
+    "count": {
+      "value": 70,
+      "comparator": "more than"
+    },
+    "criteria": [
+      {
+        "field": "log.file.path",
+        "comparator": "equals",
+        "value": "/var/log/mysql/error.log"
+      }
+    ]
+  },
+  "schedule": {
+    "interval": "2m"
+  },
+  "consumer": "alerts",
+  "name": "Spike in Database Errors",
+  "rule_type_id": "logs.alert.document.count",
+  "actions": [],
+  "alert_delay": {
+    "active": 1
+  }
+}
