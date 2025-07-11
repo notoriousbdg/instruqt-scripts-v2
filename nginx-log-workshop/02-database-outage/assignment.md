@@ -8,7 +8,7 @@ tabs:
   title: Kibana
   type: service
   hostname: kubernetes-vm
-  path: /app/dashboards
+  path: /app/dashboards#/view/4e60e0c7-3106-49bc-a814-890b6cbf085c?_g=(filters:!(),refreshInterval:(pause:!t,value:60000),time:(from:now-1h,to:now))
   port: 30001
   custom_request_headers:
   - key: Content-Security-Policy
@@ -26,14 +26,11 @@ difficulty: ""
 timelimit: 0
 enhanced_loading: null
 ---
-Now everything being green in our environment is great but we want to have a little more fun. Lets bring down the database.
+> [!WARNING]
+> OH NO, THE DATABASE HAS GONE DOWN! WE NEED TO FIND OUT WHATS HAPPENING AND FAST!
 
-Firstly head over to the SSH tab and enter the following commands.
+![Jul-11-2025_at_14.37.35-image.png](../assets/Jul-11-2025_at_14.37.35-image.png)
 
-```text
-cd instruqt-scripts-v2/
-./trigger-database-outage.sh
-```
 Make sure the time range is set to the last hour and head over to the business health dashboard.
 
 Notice on the business health dashboard we start top see errors in our MySQL logs immediately:
