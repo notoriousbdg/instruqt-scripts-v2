@@ -81,6 +81,8 @@ Never infer revenue from non‑backend data.
 Never guess index names or field paths.
 ```
 
+Example below:
+
 ![Jul-10-2025_at_14.36.15-image.png](../assets/Jul-10-2025_at_14.36.15-image.png)
 
 Now we can ask the AI Assistant about revenue data from our log files.

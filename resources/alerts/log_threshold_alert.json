@@ -1,7 +1,7 @@
 {
   "tags": [],
   "params": {
-    "timeSize": 10,
+    "timeSize": 5,
     "timeUnit": "m",
     "logView": {
       "type": "log-view-reference",

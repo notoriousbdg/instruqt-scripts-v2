@@ -42,3 +42,19 @@ Over time you can see on the dashboard our Database SLO starts to degrade.
 Heading over to Alerts - we have two alerts that have popped up. The first alert is about the Database SLO is burning down rapidly and the second alert is about the spike in error logs.
 
 ![Jul-10-2025_at_11.57.03-image.png](../assets/Jul-10-2025_at_11.57.03-image.png)
+
+Lets take a look at how the SLO is constructed, head over to the SLO navigation on the left hand side.
+
+![Jul-11-2025_at_15.14.03-image.png](../assets/Jul-11-2025_at_15.14.03-image.png)
+
+Click on the Database SLO
+
+![Jul-11-2025_at_15.14.28-image.png](../assets/Jul-11-2025_at_15.14.28-image.png)
+
+Select "Definition"
+
+![Jul-11-2025_at_15.14.55-image.png](../assets/Jul-11-2025_at_15.14.55-image.png)
+
+Notice that this SLO is constructed entirely from Log data, we are looking specifically for any errors in our mysql log files.
+
+Next up we will explore the alert and try to find the root cause of the database outage.
