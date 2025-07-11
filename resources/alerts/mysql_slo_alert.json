@@ -4,7 +4,7 @@
     "windows": [
       {
         "id": "6f5d79d7-ad8c-42db-93fe-74fcb8006f3e",
-        "burnRateThreshold": 14.4,
+        "burnRateThreshold": 1,
         "maxBurnRateThreshold": 720,
         "longWindow": {
           "value": 1,
