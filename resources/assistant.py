@@ -14,12 +14,13 @@ def log_message(message):
 
 def load_kb():
     max_retries = 3
-    wait_seconds = 20
+    wait_seconds = 30
 
     # Try up to 3 times if we get a 500 when setting up KB
     for attempt in range(1, max_retries + 1):
         kb_resp = requests.post(
             f"{os.environ['KIBANA_URL']}/internal/observability_ai_assistant/kb/setup",
+            json={},  # Send empty JSON body to satisfy Content-Type
             timeout=TIMEOUT,
             auth=(
                 os.environ["ELASTICSEARCH_USER"],
@@ -33,6 +34,8 @@ def load_kb():
         )
 
         log_message(f"KB setup response status: {kb_resp.status_code}")
+        if kb_resp.status_code != 200:
+            log_message(f"KB setup response content: {kb_resp.text}")
 
         # If there's a server error (500), retry up to max_retries
         if kb_resp.status_code == 500:
