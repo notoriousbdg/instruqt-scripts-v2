@@ -19,8 +19,7 @@ def load_kb():
     # Try up to 3 times if we get a 500 when setting up KB
     for attempt in range(1, max_retries + 1):
         kb_resp = requests.post(
-            f"{os.environ['KIBANA_URL']}/internal/observability_ai_assistant/kb/setup",
-            json={},  # Send empty JSON body to satisfy Content-Type
+            f"{os.environ['KIBANA_URL']}/internal/observability_ai_assistant/kb/setup?inference_id=.elser-2-elasticsearch",
             timeout=TIMEOUT,
             auth=(
                 os.environ["ELASTICSEARCH_USER"],
