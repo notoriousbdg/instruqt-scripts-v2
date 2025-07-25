@@ -39,26 +39,7 @@
             }
           }
         }
-      },
-      "mysql-mysql/metrics": {
-        "enabled": false,
-        "vars": {
-          "hosts": [
-            "tcp(localhost:9001)/"
-          ],
-          "username": "${MYSQL_USERNAME}",
-          "password": "${MYSQL_PASSWORD}"
-        },
-        "streams": {
-          "mysql.status": {
-            "enabled": false,
-            "vars": {
-              "period": "10s",
-              "raw": false
-            }
-          }
-        }
       }
     }
   }
-} 
+}
