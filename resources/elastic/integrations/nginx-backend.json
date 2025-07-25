@@ -3,7 +3,7 @@
   "package_policy": {
     "package": {
       "name": "nginx",
-      "version": "2.20.0"
+      "version": "2.2.0"
     },
     "name": "nginx-backend",
     "description": "Nginx backend monitoring",
