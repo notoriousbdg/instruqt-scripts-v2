@@ -3,7 +3,7 @@
   "package_policy": {
     "package": {
       "name": "mysql",
-      "version": "1.25.0"
+      "version": "1.28.0"
     },
     "name": "mysql-1",
     "description": "MySQL database monitoring",
