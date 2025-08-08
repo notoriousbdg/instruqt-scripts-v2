@@ -28,7 +28,7 @@
     }
   },
   "schedule": {
-    "interval": "2m"
+    "interval": "1m"
   },
   "consumer": "logs",
   "name": "Spike in Database Errors",
